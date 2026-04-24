@@ -46,8 +46,8 @@
     '._dai_root,._dai_root *{box-sizing:border-box;font-family:"Manrope","Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}' +
 
     /* ===== FAB / Floating widget — light theme, compact ===== */
-    '._dai_fab{position:fixed;right:24px;bottom:24px;z-index:999990;display:inline-flex;align-items:center;gap:16px;padding:12px 26px 12px 110px;width:90px;height:90px;border-radius:999px;cursor:pointer;background:transparent;border:1px solid transparent;color:#0e1116;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;font-family:"Manrope",sans-serif;text-align:left;transition:width .8s cubic-bezier(.34,1.56,.64,1),padding .8s cubic-bezier(.34,1.56,.64,1),background .5s ease,box-shadow .5s ease,border-color .5s ease,backdrop-filter .5s ease;}' +
-    '._dai_fab._dai_expanded{width:400px;background:rgba(255,255,255,0.78);border-color:rgba(255,255,255,0.9);box-shadow:0 22px 44px -16px rgba(20,25,40,0.22),0 8px 18px -8px rgba(20,25,40,0.16),inset 0 1px 0 rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);}' +
+    '._dai_fab{position:fixed;right:24px;bottom:24px;z-index:999990;display:inline-flex;align-items:center;gap:16px;padding:12px 26px 12px 132px;width:90px;height:90px;border-radius:999px;cursor:pointer;background:transparent;border:1px solid transparent;color:#0e1116;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;font-family:"Manrope",sans-serif;text-align:left;transition:width .8s cubic-bezier(.34,1.56,.64,1),padding .8s cubic-bezier(.34,1.56,.64,1),background .5s ease,box-shadow .5s ease,border-color .5s ease,backdrop-filter .5s ease;}' +
+    '._dai_fab._dai_expanded{width:420px;background:rgba(255,255,255,0.78);border-color:rgba(255,255,255,0.9);box-shadow:0 22px 44px -16px rgba(20,25,40,0.22),0 8px 18px -8px rgba(20,25,40,0.16),inset 0 1px 0 rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);}' +
 
     '._dai_orb_ring{position:absolute;left:-20px;top:50%;transform:translateY(-50%);width:130px;height:130px;border-radius:50%;pointer-events:none;z-index:2;}' +
     '._dai_orb_ring::before,._dai_orb_ring::after{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid #d4a85a;box-shadow:0 0 14px #d4a85a,0 0 30px #ffd98a,inset 0 0 10px rgba(255,255,255,0.25);animation:_dai_ringPulse 3.2s ease-in-out infinite;}' +
@@ -378,7 +378,7 @@
         orbCanvas,
         el('div', { class: '_dai_fab_text' }, [
           el('span', { class: '_dai_fab_title', html: 'Примерьте<br>фасад по фото' }),
-          el('span', { class: '_dai_fab_sub' }, 'Сгенерируйте и наложите материалы')
+          el('span', { class: '_dai_fab_sub' }, 'Весь каталог на Вашем помещении')
         ]),
         el('div', { class: '_dai_fab_icon', html: iconSvg })
       ]);
