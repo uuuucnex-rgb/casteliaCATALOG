@@ -50,10 +50,12 @@
     '._dai_fab._dai_expanded{width:295px;background:rgba(255,255,255,0.78);border-color:rgba(255,255,255,0.9);box-shadow:0 16px 32px -12px rgba(20,25,40,0.22),0 6px 14px -6px rgba(20,25,40,0.16),inset 0 1px 0 rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);}' +
 
     '._dai_orb_ring{position:absolute;left:-14px;top:50%;transform:translateY(-50%);width:92px;height:92px;border-radius:50%;pointer-events:none;z-index:2;}' +
-    '._dai_orb_ring::before,._dai_orb_ring::after{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid #d4a85a;box-shadow:0 0 12px #d4a85a,0 0 24px #ffd98a,inset 0 0 8px rgba(255,255,255,0.25);animation:_dai_ringPulse 3.2s ease-in-out infinite;}' +
-    '._dai_orb_ring::after{border-color:#ffd98a;animation-delay:-1.6s;opacity:.6;transform:scale(1.03);}' +
-    '._dai_fab:hover ._dai_orb_ring::before,._dai_fab:hover ._dai_orb_ring::after{animation-duration:1.4s;}' +
-    '@keyframes _dai_ringPulse{0%,100%{opacity:.85;transform:scale(1);}50%{opacity:1;transform:scale(1.015);}}' +
+    '._dai_orb_ripple{position:absolute;inset:0;border-radius:50%;border:1.8px solid #d4a85a;box-shadow:0 0 14px #d4a85a,0 0 26px rgba(255,217,138,0.55);opacity:0;animation:_dai_orbRipple 5.6s cubic-bezier(0.22,1,0.36,1) infinite;will-change:transform,opacity;}' +
+    '._dai_orb_ripple:nth-child(2){animation-delay:1.4s;border-color:#ffd98a;}' +
+    '._dai_orb_ripple:nth-child(3){animation-delay:2.8s;}' +
+    '._dai_orb_ripple:nth-child(4){animation-delay:4.2s;border-color:#ffd98a;}' +
+    '._dai_fab:hover ._dai_orb_ripple{animation-duration:3.4s;}' +
+    '@keyframes _dai_orbRipple{0%{transform:scale(0.94);opacity:0;border-width:2px;}10%{opacity:0.85;}100%{transform:scale(2.05);opacity:0;border-width:0.4px;}}' +
 
     '._dai_orb_canvas{position:absolute;left:-14px;top:50%;transform:translateY(-50%);width:92px;height:92px;border-radius:50%;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 60%);mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 60%);z-index:3;pointer-events:auto;cursor:pointer;}' +
 
@@ -114,6 +116,39 @@
     '._dai_check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:#d4a85a;color:#ffffff;display:none;align-items:center;justify-content:center;font-weight:800;font-size:11px;box-shadow:0 0 10px rgba(212,168,90,0.5);}' +
     '._dai_card._dai_selected ._dai_check{display:flex;}' +
 
+    /* ===== AI Chat in Step 1 ===== */
+    '._dai_chat{margin-top:18px;background:#fafaf7;border:1px solid rgba(212,168,90,0.2);border-radius:14px;overflow:hidden;}' +
+    '._dai_chat_header{display:flex;align-items:center;gap:9px;padding:10px 14px;background:linear-gradient(135deg,rgba(212,168,90,0.08),rgba(255,217,138,0.04));border-bottom:1px solid rgba(20,25,40,0.05);}' +
+    '._dai_chat_av{width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f7f1e6 0%,#d9c8a9 50%,#5a3e22 100%);box-shadow:0 0 0 1px rgba(212,168,90,0.4),0 0 10px rgba(212,168,90,0.3);flex-shrink:0;position:relative;}' +
+    '._dai_chat_av::after{content:"";position:absolute;right:-1px;bottom:-1px;width:8px;height:8px;border-radius:50%;background:#3fcf6d;border:1.5px solid #fafaf7;}' +
+    '._dai_chat_titles{display:flex;flex-direction:column;gap:1px;}' +
+    '._dai_chat_title{font-family:"Unbounded","Manrope",sans-serif;font-size:10px;font-weight:700;color:#0e1116;letter-spacing:.05em;text-transform:uppercase;}' +
+    '._dai_chat_sub{font-size:10px;color:rgba(14,17,22,0.5);}' +
+    '._dai_chat_msgs{padding:12px 14px;display:flex;flex-direction:column;gap:7px;max-height:220px;overflow-y:auto;scrollbar-width:thin;}' +
+    '._dai_chat_msgs::-webkit-scrollbar{width:4px;}' +
+    '._dai_chat_msgs::-webkit-scrollbar-thumb{background:rgba(212,168,90,0.3);border-radius:8px;}' +
+    '._dai_msg{max-width:88%;padding:8px 12px;font-size:12px;line-height:1.45;border-radius:14px;word-wrap:break-word;}' +
+    '._dai_msg_ai{background:#ffffff;border:1px solid rgba(20,25,40,0.06);color:#0e1116;align-self:flex-start;border-bottom-left-radius:4px;}' +
+    '._dai_msg_user{background:linear-gradient(180deg,#e8c98e 0%,#d4a85a 100%);color:#1a1410;align-self:flex-end;border-bottom-right-radius:4px;font-weight:500;}' +
+    '._dai_msg_typing{align-self:flex-start;color:rgba(14,17,22,0.45);font-size:11px;font-style:italic;padding:6px 10px;}' +
+    '._dai_msg_typing span{display:inline-block;animation:_dai_dotPulse 1.2s ease-in-out infinite;}' +
+    '._dai_msg_typing span:nth-child(2){animation-delay:.2s;}' +
+    '._dai_msg_typing span:nth-child(3){animation-delay:.4s;}' +
+    '@keyframes _dai_dotPulse{0%,100%{opacity:.3;}50%{opacity:1;}}' +
+    '._dai_rec_btn{align-self:flex-start;margin-top:2px;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:linear-gradient(180deg,#e8c98e 0%,#d4a85a 100%);color:#1a1410;border:0;border-radius:999px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.02em;box-shadow:0 4px 12px -4px rgba(212,168,90,0.5);transition:transform .2s ease,box-shadow .3s ease;}' +
+    '._dai_rec_btn:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 6px 16px -4px rgba(212,168,90,0.7);}' +
+    '._dai_chat_input{display:flex;gap:6px;padding:10px 12px;border-top:1px solid rgba(20,25,40,0.06);background:#ffffff;align-items:center;}' +
+    '._dai_chat_input input{flex:1;border:1px solid rgba(20,25,40,0.1);border-radius:999px;padding:8px 14px;font-size:12px;font-family:inherit;outline:none;background:#fafaf7;color:#0e1116;transition:border-color .2s ease,background .2s ease;}' +
+    '._dai_chat_input input:focus{border-color:#d4a85a;background:#ffffff;}' +
+    '._dai_chat_btn{width:32px;height:32px;border:0;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s ease,background .2s ease,opacity .2s ease;}' +
+    '._dai_chat_btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}' +
+    '._dai_chat_btn_attach{background:rgba(20,25,40,0.04);color:#0e1116;border:1px solid rgba(20,25,40,0.08);}' +
+    '._dai_chat_btn_attach:hover{background:rgba(20,25,40,0.08);transform:scale(1.05);}' +
+    '._dai_chat_btn_attach._dai_has_img{background:rgba(212,168,90,0.15);border-color:#d4a85a;color:#a8854a;}' +
+    '._dai_chat_btn_send{background:linear-gradient(180deg,#e8c98e 0%,#d4a85a 100%);color:#1a1410;}' +
+    '._dai_chat_btn_send:hover:not(:disabled){transform:scale(1.05);}' +
+    '._dai_chat_btn_send:disabled{opacity:.35;cursor:not-allowed;}' +
+
     /* ===== Step 2: drop zone ===== */
     '._dai_drop{border:1.5px dashed rgba(212,168,90,0.45);border-radius:14px;padding:32px 18px;text-align:center;background:rgba(212,168,90,0.04);cursor:pointer;transition:background .3s ease,border-color .3s ease,transform .3s ease;}' +
     '._dai_drop:hover,._dai_drop._dai_hover{background:rgba(212,168,90,0.08);border-color:#d4a85a;transform:scale(1.005);}' +
@@ -173,6 +208,11 @@
       resultDataUrl: null,
       generationTimeMs: 0
     };
+
+    // chat persists across re-renders of step 1
+    var chatHistory = [];
+    var chatPendingImage = null;
+    var chatDraft = '';
 
     // ---------- helpers ----------
     function el(tag, props, children) {
@@ -370,7 +410,12 @@
     var fab, orbCanvas, orbHandle, fabCollapseTimer, isFabExpanded = false;
     function buildFab() {
       orbCanvas = el('canvas', { class: '_dai_orb_canvas', width: 260, height: 260 });
-      var ring = el('span', { class: '_dai_orb_ring' });
+      var ring = el('span', { class: '_dai_orb_ring' }, [
+        el('span', { class: '_dai_orb_ripple' }),
+        el('span', { class: '_dai_orb_ripple' }),
+        el('span', { class: '_dai_orb_ripple' }),
+        el('span', { class: '_dai_orb_ripple' })
+      ]);
       var fallback = el('span', { class: '_dai_orb_fallback' });
 
       var iconSvg = '<svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.4"/><path d="M18.5 6.2l.8-1.6M20.8 8l1.6-.8"/></svg>';
@@ -541,6 +586,144 @@
         grid.appendChild(card);
       });
       bodyEl.appendChild(grid);
+
+      bodyEl.appendChild(buildChat());
+    }
+
+    function buildChat() {
+      var chat = el('div', { class: '_dai_chat' });
+
+      var header = el('div', { class: '_dai_chat_header' }, [
+        el('div', { class: '_dai_chat_av' }),
+        el('div', { class: '_dai_chat_titles' }, [
+          el('div', { class: '_dai_chat_title' }, 'Анна · AI-консультант'),
+          el('div', { class: '_dai_chat_sub' }, 'Подскажу какой материал подойдёт')
+        ])
+      ]);
+
+      var msgsEl = el('div', { class: '_dai_chat_msgs' });
+
+      if (chatHistory.length === 0) {
+        chatHistory.push({
+          role: 'assistant',
+          content: 'Здравствуйте! Помогу подобрать материал под ваше пространство. Опишите помещение или прикрепите фото — порекомендую один из трёх материалов каталога ✨'
+        });
+      }
+
+      function attachRecommendBtn(parent, recommendId) {
+        var mat = null;
+        for (var i = 0; i < MATERIALS.length; i++) if (MATERIALS[i].id === recommendId) mat = MATERIALS[i];
+        if (!mat) return;
+        var btn = el('button', {
+          class: '_dai_rec_btn',
+          onclick: function () {
+            state.selectedMaterial = mat;
+            state.step = 2;
+            render();
+          }
+        }, '✦ Примерим ' + mat.name + ' →');
+        parent.appendChild(btn);
+      }
+
+      function rerenderMsgs() {
+        msgsEl.innerHTML = '';
+        chatHistory.forEach(function (m) {
+          if (m.role === 'user') {
+            msgsEl.appendChild(el('div', { class: '_dai_msg _dai_msg_user' }, m.content));
+          } else if (m.role === 'assistant') {
+            msgsEl.appendChild(el('div', { class: '_dai_msg _dai_msg_ai' }, m.content));
+            if (m.recommendId) attachRecommendBtn(msgsEl, m.recommendId);
+          } else if (m.role === 'typing') {
+            msgsEl.appendChild(el('div', { class: '_dai_msg _dai_msg_typing', html: '<span>•</span><span>•</span><span>•</span>' }));
+          }
+        });
+        msgsEl.scrollTop = msgsEl.scrollHeight;
+      }
+      rerenderMsgs();
+
+      var input = el('input', { type: 'text', placeholder: 'Опишите помещение или стиль...' });
+      input.value = chatDraft;
+      input.addEventListener('input', function () { chatDraft = input.value; });
+
+      var attachInput = el('input', { type: 'file', accept: 'image/*', style: 'display:none;' });
+      var attachIcon = '<svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>';
+      var attachBtn = el('button', { class: '_dai_chat_btn _dai_chat_btn_attach' + (chatPendingImage ? ' _dai_has_img' : ''), html: attachIcon, 'aria-label': 'Прикрепить фото' });
+      attachBtn.addEventListener('click', function () { attachInput.click(); });
+      attachInput.addEventListener('change', function (e) {
+        var f = e.target.files && e.target.files[0];
+        if (!f) return;
+        fileToBase64(f).then(function (r) {
+          chatPendingImage = { base64: r.base64, mime: r.mime };
+          attachBtn.classList.add('_dai_has_img');
+        }).catch(function () {});
+      });
+
+      var sendIcon = '<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+      var sendBtn = el('button', { class: '_dai_chat_btn _dai_chat_btn_send', html: sendIcon, 'aria-label': 'Отправить' });
+
+      function send() {
+        var text = (input.value || '').trim();
+        var img = chatPendingImage;
+        if (!text && !img) return;
+        var userMsg = text || '📷 Вот фото моего помещения';
+        chatHistory.push({ role: 'user', content: userMsg });
+        chatHistory.push({ role: 'typing' });
+        input.value = '';
+        chatDraft = '';
+        chatPendingImage = null;
+        attachBtn.classList.remove('_dai_has_img');
+        sendBtn.disabled = true;
+        rerenderMsgs();
+
+        var msgsForApi = [];
+        chatHistory.forEach(function (m) {
+          if (m.role === 'user' || m.role === 'assistant') {
+            msgsForApi.push({ role: m.role, content: m.content });
+          }
+        });
+
+        fetch(SERVER_URL + '/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: msgsForApi,
+            imageBase64: img ? img.base64 : null,
+            imageMime: img ? img.mime : null
+          })
+        })
+          .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+          .then(function (r) {
+            chatHistory = chatHistory.filter(function (m) { return m.role !== 'typing'; });
+            if (!r.ok || !r.data || r.data.error) {
+              chatHistory.push({ role: 'assistant', content: 'Что-то не так со связью. Попробуйте ещё раз через секунду.' });
+            } else {
+              chatHistory.push({
+                role: 'assistant',
+                content: r.data.reply || 'Извините, попробуйте сформулировать иначе.',
+                recommendId: r.data.recommendId
+              });
+            }
+            sendBtn.disabled = false;
+            rerenderMsgs();
+          })
+          .catch(function () {
+            chatHistory = chatHistory.filter(function (m) { return m.role !== 'typing'; });
+            chatHistory.push({ role: 'assistant', content: 'Сеть недоступна. Попробуйте позже.' });
+            sendBtn.disabled = false;
+            rerenderMsgs();
+          });
+      }
+
+      sendBtn.addEventListener('click', send);
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+      });
+
+      var inputRow = el('div', { class: '_dai_chat_input' }, [attachBtn, input, sendBtn, attachInput]);
+      chat.appendChild(header);
+      chat.appendChild(msgsEl);
+      chat.appendChild(inputRow);
+      return chat;
     }
 
     // ---------- Step 2 ----------
